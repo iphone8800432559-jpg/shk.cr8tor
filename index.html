@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealify - Gym Diet Combo & Supplements</title>
+    <link rel="stylesheet" href="3dprofile.html">
+    
+    <style>
+        
+        
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+            perspective: 1500px;
+        }
+
+        /* Fullscreen Modal Styles */
+        #welcome-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0s 0.5s;
+        }
+
+        #welcome-modal.show {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            transform: translateZ(100px);
+            animation: zoomIn 1s ease-out;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .modal-content h1 {
+            font-size: 4rem;
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: translateY(-100px);
+            }
+            60% {
+                transform: translateY(20px);
+            }
+            80% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .discount-info {
+            font-size: 2rem;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff9900;
+        }
+
+        .continue-btn {
+            margin-top: 40px;
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .continue-btn:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Animating background image */
+        .background-image {
+            background-image: url('https://via.placeholder.com/1500x1000'); /* Use actual image URL here */
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+            transform: scale(1.1);
+            animation: zoomBackground 10s infinite alternate;
+        }
+
+        @keyframes zoomBackground {
+            0% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Body Content */
+        header, footer {
+            display: block;
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        /* Product Section */
+        #product-selection {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        #product-selection h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+        }
+
+        .product:hover {
+            transform: rotateY(15deg) translateZ(30px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.5s ease;
+        }
+
+        .product img:hover {
+            transform: scale(1.1);
+        }
+
+        .product h3 {
+            font-size: 1.6rem;
+            margin: 15px 0;
+        }
+
+        .product p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .select-product {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .select-product:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+    </style>
+</head>
+<body>
+
+<h1 id="founder-heading">Founder By Shankar</h1>
+
+<!-- Separate 3D card container -->
+<div id="founder-card" style="display:none;">
+    <div class="founder-3d">
+        <img src="founder.JPG" alt="Shankar" class="founder-photo">
+        <h3>Shankar</h3>
+        <p>Mera naam Shankar hai aur main [Dealify] ka founder hoon, jiska aim hai customers ko </p>
+    </div>
+</div>
+
+<style>
+/* Smaller Heading 3D */
+#founder-heading {
+    font-size: 2.5rem; /* reduced from 4rem */
+    text-align: center;
+    margin: 30px 0;
+    color: #ff00ff;
+    letter-spacing: 3px;
+    text-shadow: 0 0 3px #ff00ff, 0 0 6px #c000ff, 0 0 12px #8000ff, 0 0 20px #4000ff;
+    cursor: pointer;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+#founder-heading:hover {
+    transform: rotateX(8deg) rotateY(-8deg) translateZ(10px);
+}
+
+/* 3D Founder Card */
+#founder-card {
+    width: 350px;
+    margin: 20px auto 50px auto;
+    perspective: 1200px;
+}
+
+.founder-3d {
+    background: linear-gradient(45deg, #ff00ff, #c000ff);
+    border-radius: 25px;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 30px #ff00ff, 0 0 50px #c000ff;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.founder-3d:hover {
+    transform: rotateY(10deg) rotateX(5deg) translateZ(10px);
+}
+
+/* Photo */
+.founder-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 0 20px #fff;
+    margin-bottom: 20px;
+}
+
+/* Name and details 3D style */
+.founder-3d h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #c000ff;
+}
+
+.founder-3d p {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-shadow: 0 0 5px #fff, 0 0 10px #c000ff;
+}
+</style>
+
+<script>
+// Show founder card when heading is clicked
+document.getElementById('founder-heading').addEventListener('click', () => {
+    const card = document.getElementById('founder-card');
+    card.style.display = (card.style.display === 'block') ? 'none' : 'block';
+});
+</script>
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Colorful News Ticker Animation</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+    
+            .news-ticker-container {
+                width: 100%;
+                overflow: hidden;
+                background-color: #333;
+                color: white;
+                padding: 5px 0;
+                position: relative;
+            }
+    
+            .news-ticker {
+                display: flex;
+                white-space: nowrap;
+                animation: scroll 10s linear infinite;
+            }
+    
+            .news-item {
+                margin-right: 30px;
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 5px;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+                animation: dance 2s ease-in-out infinite;
+            }
+    
+            /* Random Colors */
+            .news-item:nth-child(1) {
+                background-color: #ff7e5f;
+            }
+            .news-item:nth-child(2) {
+                background-color: #6a11cb;
+            }
+            .news-item:nth-child(3) {
+                background-color: #2575fc;
+            }
+            .news-item:nth-child(4) {
+                background-color: #ffb6b9;
+            }
+            .news-item:nth-child(5) {
+                background-color: #4caf50;
+            }
+            .news-item:nth-child(6) {
+                background-color: #ff9800;
+            }
+    
+            /* Scroll animation */
+            @keyframes scroll {
+                from {
+                    transform: translateX(100%);
+                }
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+    
+            /* Dance animation */
+            @keyframes dance {
+                0% { transform: rotate(0deg); }
+                25% { transform: rotate(3deg); }
+                50% { transform: rotate(-3deg); }
+                75% { transform: rotate(3deg); }
+                100% { transform: rotate(0deg); }
+            }
+    
+        </style>
+    </head>
+    <body>
+    
+        <div class="news-ticker-container">
+            <div class="news-ticker">
+                <div class="news-item">Founder By Shankar: Offering 50% Discount on All Products</div>
+                <div class="news-item">Breaking News: Global Markets Rise Amid Economic Recovery</div>
+                <div class="news-item">Tech Update: New Smartphone Launch Expected Next Month</div>
+                <div class="news-item">Fashion Trends: Winter Collection Released</div>
+                <div class="news-item">Weather Alert: Snowstorm Expected in North</div>
+                <div class="news-item">Sports News: Local Team Wins Championship</div>
+            </div>
+        </div>
+    
+    </body>
+    </html>
+    
+
+
+
+    <title>Dealify - Gym Diet Combo & Supplements</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and general layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+            perspective: 1500px; /* Enable 3D effect */
+        }
+
+        /* Header */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #ff9900;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.1) rotate(5deg); /* Button hover 3D effect */
+        }
+
+        /* Products Section */
+        #product-selection {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        #product-selection h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            perspective: 1500px; /* Enable 3D effect on product container */
+        }
+
+        .product {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d; /* Make sure the 3D effect works on child elements */
+        }
+
+        .product:hover {
+            transform: rotateY(15deg) translateZ(30px); /* 3D effect on hover */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.5s ease;
+        }
+
+        .product img:hover {
+            transform: scale(1.1); /* Slight zoom effect */
+        }
+
+        .product h3 {
+            font-size: 1.6rem;
+            margin: 15px 0;
+        }
+
+        .product p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .select-product {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .select-product:hover {
+            transform: scale(1.1) translateY(-5px); /* 3D lift effect on button */
+        }
+
+        /* Cart Section */
+        #cart-section {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            transform-style: preserve-3d;
+        }
+
+        #cart-items {
+            margin-bottom: 30px;
+        }
+
+        #submit-order {
+            padding: 15px 30px;
+            background-color: #28a745;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        #submit-order:hover {
+            transform: scale(1.1) rotate(5deg); /* Button hover 3D effect */
+        }
+
+        /* Need Help Section */
+        #need-help {
+            background-color: #f7f7f7;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        #need-help a {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #25d366;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        #need-help a:hover {
+            transform: scale(1.1); /* 3D effect on link */
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo">
+            <img src="de.png" alt="Dealify Logo"><h1>Dealify</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#product-selection">Products</a></li>
+                <li><a href="#my-orders">My Orders</a></li>
+                <li><a href="#need-help">Need Help</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+   <!-- Hero Section -->
+<section class="hero" style="position:relative; height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white; text-align:center; perspective:1000px; overflow:hidden;">
+    
+    <!-- Background Video (optional) -->
+    <video autoplay muted loop playsinline style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-2;">
+        <source src="founder.JPG" type="video/mp4">
+    </video>
+
+    <!-- Background Image (optional, will show if video fails) -->
+    <div style="background:url('bac.jpg') center/cover no-repeat; position:absolute; top:0; left:0; width:100%; height:80%; z-index:-3;"></div>
+
+    <!-- Neon overlay (optional glow effect) -->
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:-1;"></div>
+
+    <!-- Main content -->
+    <h1 style="font-size:4rem; margin-bottom:20px; color:#00f0ff; text-shadow: 0 0 10px #00f0ff, 0 0 20px #00c0ff, 0 0 30px #0080ff; transform-style:preserve-3d; transition:transform 0.3s ease; cursor:pointer;" 
+        onmouseover="this.style.transform='rotateX(10deg) rotateY(-10deg) translateZ(20px)'" 
+        onmouseout="this.style.transform='rotateX(0deg) rotateY(0deg) translateZ(0px)'">
+        Welcome to Dealify!
+    </h1>
+
+    <p style="font-size:1.2rem; max-width:600px; margin-bottom:30px; color:#cceeff; text-shadow: 0 0 5px #00f0ff, 0 0 10px #00c0ff;">
+        Select all your favorite products in one go! <br>
+        You must choose 4 items to place your order successfully.
+    </p>
+
+    <a href="#product-selection" style="display:inline-block; padding:15px 30px; background:#00f0ff; color:#111; font-weight:bold; border-radius:10px; text-decoration:none; text-transform:uppercase; letter-spacing:2px; box-shadow:0 0 10px #00f0ff, 0 0 20px #00c0ff; transition: transform 0.3s ease;" 
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'">
+        View Products
+    </a>
+</section>
+
+
+    <!-- Products Section -->
+    <section id="product-selection">
+        <h2>Our Products</h2>
+        <div class="product-list">
+            <!-- Product 1: Quaker Oats -->
+            <div class="product">
+                <img  src="MASALA OTS.jpg" alt="Quaker Oats ">
+                <h3>Masala oats  (40gm)</h3>
+                <p>High-quality oats, perfect for a healthy breakfast.</p>
+                <button class="select-product" onclick="selectProduct('Quaker Oats Pouch (1kg)')">Select</button>
+            </div>
+
+            <!-- Product 2: True Elements Rolled Oats -->
+            <div class="product">
+                <img src="quaker.jpg" alt="True Elements Rolled Oats">
+                <h3>quaker oats == (1kg) - Pack of 1</h3>
+                <p><strong>!</strong> Healthy rolled oats for your quick and nutritious breakfast.</p>
+                <button class="select-product" onclick="selectProduct('True Elements Ready to Cook Rolled Oats (200gm) - Pack of 3')">Select</button>
+            </div>
+
+            <!-- Product 3: Yoga Bar Dark Chocolate Oats -->
+            <div class="product">
+                <img src="chclalte.jpg" alt="Yoga Bar Dark Chocolate Oats">
+                <h3>Yoga Bar Dark Chocolate Oats (40gm)</h3>
+                <p>Delicious dark chocolate oats for an energy-packed breakfast.</p>
+                <button class="select-product" onclick="selectProduct('Yoga Bar Dark Chocolate Oats (40gm)')">Select</button>
+            </div>
+            
+
+            <!-- Product 4: Veeba Creamy Peanut Butter -->
+            <div class="product">
+                <img src="peanut.jpg" alt="Veeba Creamy Peanut Butter">
+                <h3>Veeba Creamy Peanut Butter (925gm)</h3>
+                <p>Nutritious peanut butter, perfect for sandwiches or smoothies.</p>
+                <button class="select-product" onclick="selectProduct('Veeba Creamy Peanut Butter (925gm)')">Select</button>
+            </div>
+
+            <!-- Product 5: Yoga Bar Protein Bar (Blueberry Pie) -->
+            <div class="product">
+                <img src="baar.jpg" alt="Yoga Bar Protein Bar (Blueberry Pie)">
+                <h3>Yoga Bar Protein Bar (Blueberry Pie, 50g)</h3>
+                <p>A protein-rich breakfast bar with delicious blueberry flavor.</p>
+                <button class="select-product" onclick="selectProduct('Yoga Bar Protein Bar (Blueberry Pie, 50g)')">Select</button>
+            </div>
+
+            
+            <!-- Product 7: Zandu Pure Honey -->
+            <div class="product">
+                <img src="hunny.jpg" alt="Zandu Pure Honey">
+                <h3>Zandu Pure Honey (500gm)</h3>
+                <p>Pure and natural honey, a healthy sweetener for your diet.</p>
+                <button class="select-product" onclick="selectProduct('Zandu Pure Honey (500gm)')">Select</button>
+            </div>
+        </div>
+    </section>
+          
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Decoration</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
+}
+
+/* Big 3D heading */
+#home-heading {
+    font-size: 5rem;
+    text-align: center;
+    margin: 100px 0 50px 0;
+    color: #00f0ff;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    cursor: pointer;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    text-shadow:
+        0 0 5px #00f0ff,
+        0 0 10px #00c0ff,
+        0 0 20px #0080ff,
+        0 0 40px #0040ff;
+    transition: transform 0.3s ease;
+}
+
+#home-heading:hover {
+    transform: rotateX(10deg) rotateY(-10deg) translateZ(20px);
+}
+
+/* Products grid */
+#home-products {
+    display: none;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Product card */
+.product {
+    position: relative;
+    background-color: #111;
+    border: 3px solid #00f0ff;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px #00f0ff, 0 0 20px #00c0ff;
+    transition: transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.product:hover {
+    transform: rotateY(10deg) translateZ(20px);
+    box-shadow: 0 0 20px #00f0ff, 0 0 40px #00c0ff, 0 0 60px #0080ff;
+    border-color: #00c0ff;
+}
+
+.product img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00f0ff;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.product img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00f0ff, 0 0 30px #00c0ff;
+}
+
+.product h3 {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    text-shadow: 0 0 5px #00f0ff, 0 0 10px #00c0ff;
+}
+
+.product p {
+    font-size: 1rem;
+    color: #cceeff;
+}
+
+/* Tick overlay */
+.tick {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    color: lime;
+    display: none;
+}
+
+/* Select button */
+.select-product {
+    padding: 10px 20px;
+    background-color: #00f0ff;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 5px #00f0ff, 0 0 10px #00c0ff;
+}
+
+.select-product:hover {
+    transform: scale(1.1);
+    background-color: #00c0ff;
+    box-shadow: 0 0 20px #00f0ff, 0 0 40px #00c0ff;
+}
+
+/* Cart Section */
+#cart-section {
+    padding: 40px 20px;
+    background-color: #111;
+    max-width: 600px;
+    margin: 0 auto 50px auto;
+    border: 3px solid #00f0ff;
+    border-radius: 15px;
+    display: none;
+    text-align: center;
+}
+
+#cart-items p {
+    margin: 5px 0;
+}
+
+#submit-order {
+    padding: 10px 20px;
+    background-color: #00f0ff;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#submit-order:hover {
+    transform: scale(1.1);
+    background-color: #00c0ff;
+}
+</style>
+</head>
+<body>
+
+<h1 id="home-heading">Home Decoration</h1>
+
+<div id="home-products">
+    <div class="product">
+        <span class="tick">&#10004;</span>
+        <img src="wall.png" alt="Wall Art">
+        <h3>Abstract Wall Art</h3>
+        <p>Beautiful painting to enhance your room. 45x250cm</p>
+        <button class="select-product" onclick="selectProduct(this)">Select</button>
+    </div>
+
+    <div class="product">
+        <span class="tick">&#10004;</span>
+        <img src="flower.png" alt="Decorative Vase">
+        <h3>Decorative Vase</h3>
+        <p>Elegant vase for flowers or decoration.</p>
+        <button class="select-product" onclick="selectProduct(this)">Select</button>
+    </div>
+
+    <div class="product">
+        <span class="tick">&#10004;</span>
+        <img src="one.png" alt="Table Lamp">
+        <h3>Modern Table Lamp</h3>
+        <p>Soft LED lighting for cozy ambiance.</p>
+        <button class="select-product" onclick="selectProduct(this)">Select</button>
+    </div>
+
+    <div class="product">
+        <span class="tick">&#10004;</span>
+        <img src="moti.png" alt="Cushion Set">
+        <h3>Art wall Set</h3>
+        <p>"Abstract Art Wall Frames | Set of 3 | Home Decor"</p>
+        <button class="select-product" onclick="selectProduct(this)">Select</button>
+    </div>
+</div>
+
+<!-- Cart Section -->
+<div id="cart-section">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <p id="cart-warning" style="color:red;"></p>
+    <button id="submit-order" onclick="submitOrder()">Confirm Order</button>
+</div>
+
+<script>
+let selectedProducts = [];
+
+function selectProduct(button) {
+    const productCard = button.parentElement;
+    const productName = productCard.querySelector('h3').innerText;
+    const tick = productCard.querySelector('.tick');
+
+    if (!selectedProducts.includes(productName)) {
+        if (selectedProducts.length < 4) {
+            selectedProducts.push(productName);
+            tick.style.display = 'block';
+        } else {
+            alert("You can select only 4 products.");
+        }
+    } else {
+        // Unselect
+        selectedProducts = selectedProducts.filter(p => p !== productName);
+        tick.style.display = 'none';
+    }
+
+    updateCart();
+}
+
+function updateCart() {
+    const cart = document.getElementById('cart-section');
+    const cartItems = document.getElementById('cart-items');
+    const submitBtn = document.getElementById('submit-order');
+    const cartWarning = document.getElementById('cart-warning');
+
+    if (selectedProducts.length > 0) {
+        cart.style.display = 'block';
+        cartItems.innerHTML = selectedProducts.map(p => `<p>${p}</p>`).join('');
+        submitBtn.style.display = selectedProducts.length === 4 ? 'block' : 'none';
+        cartWarning.innerText = selectedProducts.length < 4 ? 'Select 4 items to confirm order.' : '';
+    } else {
+        cart.style.display = 'none';
+    }
+}
+
+
+function submitOrder() {
+    if (selectedProducts.length < 4) {
+        alert("Select 4 products to submit order.");
+        return;
+    }
+
+    let name = prompt("Enter your full name:");
+    let phone = prompt("Enter your phone number:");
+    let address = prompt("Enter your delivery address:");
+    let email = prompt("Enter your email:");
+
+    let message = `*Order Details:*\n\nProducts: ${selectedProducts.join(', ')}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nEmail: ${email}`;
+    let whatsappLink = `https://wa.me/8800432559?text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappLink;
+}
+
+// Toggle products section on heading click
+document.getElementById('home-heading').addEventListener('click', () => {
+    const products = document.getElementById('home-products');
+    products.style.display = (products.style.display === 'grid') ? 'none' : 'grid';
+});
+</script>
+
+</body>
+</html>
+
+        
+        
+        <!-- Cart Section -->
+<div id="cart-section">
+    <h2 id="cart-heading">Your Cart</h2>
+    <div id="cart-items"></div>
+    <p id="cart-warning" style="color:red;"></p>
+    <button id="submit-order" onclick="submitOrder()">Confirm Order</button>
+</div>
+
+<style>
+/* Big 3D Cart Heading */
+#cart-heading {
+    font-size: 4rem;
+    text-align: center;
+    margin: 30px 0;
+    color: #00ffea;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    text-shadow:
+        0 0 5px #00ffea,
+        0 0 10px #00c0ff,
+        0 0 20px #0080ff,
+        0 0 40px #0040ff;
+    transition: transform 0.3s ease;
+}
+
+#cart-heading:hover {
+    transform: rotateX(10deg) rotateY(-10deg) translateZ(20px);
+}
+
+/* Make the entire cart pop when 4 items are selected */
+#cart-section.active {
+    transform: scale(1.2) rotateX(5deg);
+    box-shadow: 0 0 50px #00ffea, 0 0 80px #00c0ff;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+</style>
+
+<script>
+function updateCart() {
+    const cart = document.getElementById('cart-section');
+    const cartItems = document.getElementById('cart-items');
+    const submitBtn = document.getElementById('submit-order');
+    const cartWarning = document.getElementById('cart-warning');
+
+    if (selectedProducts.length > 0) {
+        cart.style.display = 'block';
+        cartItems.innerHTML = selectedProducts.map(p => `<p>${p}</p>`).join('');
+        submitBtn.style.display = selectedProducts.length === 4 ? 'block' : 'none';
+        cartWarning.innerText = selectedProducts.length < 4 ? 'Select 4 items to confirm order.' : '';
+
+        // Add 3D pop effect when 4 items selected
+        if (selectedProducts.length === 4) {
+            cart.classList.add('active');
+        } else {
+            cart.classList.remove('active');
+        }
+    } else {
+        cart.style.display = 'none';
+    }
+}
+
+function submitOrder() {
+    if (selectedProducts.length < 4) {
+        alert("Select 4 products to submit order.");
+        return;
+    }
+
+    let name = prompt("Enter your full name:");
+    let phone = prompt("Enter your phone number:");
+    let address = prompt("Enter your delivery address:");
+    let email = prompt("Enter your email:");
+
+    let message = `*Home Decoration Order:*\n\nProducts: ${selectedProducts.join(', ')}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nEmail: ${email}`;
+    let whatsappLink = `https://wa.me/8800432559?text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappLink;
+}
+</script>
+<h1 id="gadget-heading">Gadgets</h1>
+
+<!-- 3D Gadget Cards Container -->
+<div id="gadget-products" style="display:none; max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
+    <!-- Gadget 1 -->
+    <div class="gadget-card">
+        <span class="tick">&#10004;</span>
+        <img src="not.png" alt="Smart Watch">
+        <h3>Smart Watch</h3>
+        <p>Track your fitness and notifications in style.</p>
+        <button onclick="selectGadget(this)">Select</button>
+    </div>
+
+    <!-- Gadget 2 -->
+    <div class="gadget-card">
+        <span class="tick">&#10004;</span>
+        <img src="not.png" alt="Wireless Earbuds">
+        <h3>Wireless Earbuds</h3>
+        <p>High-quality sound with noise cancellation.</p>
+        <button onclick="selectGadget(this)">Select</button>
+    </div>
+
+    <!-- Gadget 3 -->
+    <div class="gadget-card">
+        <span class="tick">&#10004;</span>
+        <img src="not.png" alt="Tablet">
+        <h3>Tablet</h3>
+        <p>Portable tablet for work and entertainment.</p>
+        <button onclick="selectGadget(this)">Select</button>
+    </div>
+
+    <!-- Gadget 4 -->
+    <div class="gadget-card">
+        <span class="tick">&#10004;</span>
+        <img src="not.png" alt="Bluetooth Speaker">
+        <h3>Bluetooth Speaker</h3>
+        <p>Portable speaker with crystal clear sound.</p>
+        <button onclick="selectGadget(this)">Select</button>
+    </div>
+</div>
+
+<!-- Gadget Cart -->
+<div id="gadget-cart" style="display:none; max-width:600px; margin:30px auto; padding:20px; border:3px solid #00f0ff; border-radius:15px; text-align:center; background:#111;">
+    <h2>Your Gadget Cart</h2>
+    <div id="gadget-cart-items"></div>
+    <p id="gadget-cart-warning" style="color:red;"></p>
+    <button id="gadget-submit" onclick="submitGadgetOrder()" style="padding:10px 20px; background:#00f0ff; border:none; color:#111; border-radius:8px; cursor:pointer; font-weight:bold;">Confirm Order</button>
+</div>
+
+<style>
+/* 3D heading */
+#gadget-heading {
+    font-size: 3rem;
+    text-align: center;
+    margin: 50px 0;
+    color: #00f0ff;
+    letter-spacing: 3px;
+    text-shadow: 0 0 5px #00f0ff, 0 0 10px #00c0ff, 0 0 20px #0080ff;
+    cursor: pointer;
+    perspective: 800px;
+    transition: transform 0.3s ease;
+}
+#gadget-heading:hover {
+    transform: rotateX(8deg) rotateY(-8deg) translateZ(10px);
+}
+
+/* Gadget Card */
+.gadget-card {
+    position: relative;
+    background:#111;
+    border:3px solid #00f0ff;
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+    box-shadow: 0 0 10px #00f0ff, 0 0 20px #00c0ff;
+    transition: transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.gadget-card:hover {
+    transform: rotateY(10deg) translateZ(15px);
+    box-shadow:0 0 20px #00f0ff,0 0 40px #00c0ff;
+    border-color:#00c0ff;
+}
+.gadget-card img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
+    box-shadow:0 0 10px #00f0ff;
+    transition:transform 0.5s ease, box-shadow 0.3s ease;
+}
+.gadget-card img:hover {
+    transform:scale(1.05);
+    box-shadow:0 0 20px #00f0ff, 0 0 30px #00c0ff;
+}
+.gadget-card h3 {
+    font-size:1.5rem;
+    margin:10px 0;
+    text-shadow:0 0 5px #00f0ff,0 0 10px #00c0ff;
+}
+.gadget-card p {
+    font-size:1rem;
+    color:#cceeff;
+}
+.gadget-card button {
+    padding:8px 16px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#00f0ff;
+    color:#111;
+    cursor:pointer;
+    font-weight:bold;
+    box-shadow:0 0 5px #00f0ff;
+    transition:transform 0.3s ease, background 0.3s ease;
+}
+.gadget-card button:hover {
+    transform:scale(1.1);
+    background:#00c0ff;
+    box-shadow:0 0 20px #00f0ff,0 0 40px #00c0ff;
+}
+
+/* Tick */
+.tick {
+    position:absolute;
+    top:10px;
+    right:10px;
+    font-size:2rem;
+    color:lime;
+    display:none;
+}
+</style>
+
+<script>
+let selectedGadgets = [];
+
+function selectGadget(button){
+    const card = button.parentElement;
+    const name = card.querySelector('h3').innerText;
+    const tick = card.querySelector('.tick');
+
+    if(!selectedGadgets.includes(name)){
+        if(selectedGadgets.length < 4){
+            selectedGadgets.push(name);
+            tick.style.display = 'block';
+        } else {
+            alert("You can select only 4 gadgets.");
+        }
+    } else {
+        selectedGadgets = selectedGadgets.filter(p => p !== name);
+        tick.style.display = 'none';
+    }
+
+    updateGadgetCart();
+}
+
+function updateGadgetCart(){
+    const cart = document.getElementById('gadget-cart');
+    const items = document.getElementById('gadget-cart-items');
+    const submitBtn = document.getElementById('gadget-submit');
+    const warning = document.getElementById('gadget-cart-warning');
+
+    if(selectedGadgets.length > 0){
+        cart.style.display = 'block';
+        items.innerHTML = selectedGadgets.map(p=>`<p>${p}</p>`).join('');
+        submitBtn.style.display = selectedGadgets.length === 4 ? 'block' : 'none';
+        warning.innerText = selectedGadgets.length < 4 ? "Select 4 gadgets to confirm order." : '';
+    } else {
+        cart.style.display = 'none';
+    }
+}
+
+function submitGadgetOrder(){
+    if(selectedGadgets.length < 4){
+        alert("Select 4 gadgets to submit order.");
+        return;
+    }
+
+    let name = prompt("Enter your full name:");
+    let phone = prompt("Enter your phone number:");
+    let address = prompt("Enter your delivery address:");
+    let email = prompt("Enter your email:");
+
+    let message = `*Gadget Order:*\nProducts: ${selectedGadgets.join(', ')}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nEmail: ${email}`;
+    let whatsappLink = `https://wa.me/8800432559?text=${encodeURIComponent(message)}`;
+    window.location.href = whatsappLink;
+}
+
+// Toggle gadget products visibility
+document.getElementById('gadget-heading').addEventListener('click', ()=>{
+    const products = document.getElementById('gadget-products');
+    products.style.display = (products.style.display==='grid')?'none':'grid';
+});
+</script>
+
+    </script>
+</body>
+</html>
